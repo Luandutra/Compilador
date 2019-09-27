@@ -2,69 +2,84 @@
 package execucao;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.net.URL;
 
 
 
 
 public class teste_03 {
     
+    
+     public static String arquivoAbrir;
+     public static boolean argu = false ;
+     public static String endereco;
+     
+     
+    public URL getFile(){
+        return getClass().getResource(arquivoAbrir);
+    } 
+     
+    
     public static void main(String[] args) {
         
     ArrayList<String> arg  = new ArrayList<>();
-    String endereco = "C:\\Users\\luand\\OneDrive\\Documents\\compilador\\fatorial.txt";
-    boolean argu = false ;
-    boolean teste;
-   
-   
     
-    if (args.length > 0){
+    
+       if (args.length > 0){
         
         for(int i = 0 ; i < args.length;i++){
             arg.add(args[i]);
             
         }
        
-        for (int j = 0; j<args.length; j++){
+     
             
-            int m = 1;
-                   
-
-            if (arg.get(j).matches("fatorial.txt")){
-                System.out.println(arg.get(j));
-                if (arg.get(m).matches("-lt")) {
-                            argu = true ;
-                            
-                    }   else {
-                                System.out.println(" recebido ");
-                        } 
-            }
-        }
- 
+        if (arg.contains("-lt")) {
+                argu = true ;       
+        }   else {
+                argu = false;
+            } 
+        
     }else{
         argu = false;
         System.out.println(" Construido com Sucesso ");
     }
+       
+    arquivoAbrir = arg.get(0);
+    
+    teste_03 f = new teste_03();
+    endereco = f.getFile().toString();
+    
+    char[] localArquivo = endereco.toCharArray();
+    endereco = "";
+    for (int i = 5; i < localArquivo.length;i++){
+        if (localArquivo[i] == '\\'){
+            endereco += "/";
+        }else {
+            endereco += localArquivo[i];
+        }
+    }
+        
+   
           
-        
     try{
-        
+       System.out.println("\n Endereco do Arquivo \n" + endereco);
+
         ArrayList<String> arquivo = new ArrayList<>();
-        
+       
         arquivo= leitura.Leitura_Arquivo.leitura(endereco);
            
-       
+        System.out.println(" \n Apresentacao de Tolkens, Lexema, Linha e Coluna \n " );
         expressao_Regular.Comparacao.procedimento(arquivo, argu);
-       
+      
            
-    }catch (Exception e){
+    }catch (IOException e){
         System.out.println(" Erro " + e);
 
     }
     
-    
-   
-
     }
 
     
