@@ -1,17 +1,25 @@
 
 package expressao_Regular;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import tolkens.TolkensGramatica;
 
 
 public class Comparacao {
+    
+    public static String saida = "tokens.txt";
+    public static FileWriter arq;
+    public static PrintWriter gravarArquivoTolkens;
+    public static boolean arg;
+    
     public static void procedimento( ArrayList<String>arquivo, boolean argu){
         
          ArrayList<String[]> quebraLinhas = new ArrayList<>();
          ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
          ArrayList<TolkensGramatica> Erros = new ArrayList<>();
-          
+        
       
         int cont = 0;
         for (int i = 0; i < arquivo.size()-1;i++){
@@ -131,7 +139,17 @@ public class Comparacao {
         if( argu== true ){
                 for(TolkensGramatica l : TolkensPalavras){
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
+                        
                 }
+                /*
+                try{
+                 arq = new FileWriter(getFile(saida));
+                 gravarArquivoTolkens = new PrintWriter(arq);
+                 
+                 arq.close()
+                }catch(Exception e ){
+                    System.out.println("Erro de gravação de tolkens "+ e );
+                }*/
        }
        
     }

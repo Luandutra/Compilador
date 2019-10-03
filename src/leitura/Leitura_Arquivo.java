@@ -18,8 +18,8 @@ public class Leitura_Arquivo {
  
     try {
         // Leitura do aquivo
-        FileReader endereco = new FileReader(arquivo);
-        BufferedReader leituraArquivo = new BufferedReader(endereco);
+        FileReader local = new FileReader(arquivo);
+        BufferedReader leituraArquivo = new BufferedReader(local);
         String linha ="";
        try{
         while (linha != null) {
@@ -32,7 +32,7 @@ public class Leitura_Arquivo {
         e.getMessage());
        }
                 
-        endereco.close();
+        local.close();
         return Palavras;
 
     }catch (FileNotFoundException e) {
