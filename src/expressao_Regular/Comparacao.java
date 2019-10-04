@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import tolkens.TolkensGramatica;
 
 
@@ -38,14 +40,37 @@ public class Comparacao {
         }
           
       
-        boolean Frases = false;
+        boolean frases = false;
         String txt = "";
  
         
         for (int  i = 0; i < quebraLinhas.size(); i++){
             for(int j = 0; j < quebraLinhas.get(i).length; j++){
-             
                 
+                
+                
+                
+                Pattern p = Pattern.compile("[\"]");
+                Matcher m = p.matcher(quebraLinhas.get(i)[j]);
+                if(m.find()){
+                    
+                    frases = true;
+                    while (frases){
+                        if (quebraLinhas.get(i)[j].endsWith("\"")){
+                            txt += " " + quebraLinhas.get(i)[j];
+                           
+                        }else {
+                            txt += " "+ quebraLinhas.get(i)[j];
+                            frases = false;
+                             System.out.println("tetststetete");
+                        }
+                        j++;
+                    }
+                    TolkensPalavras.add(new TolkensGramatica ( "TK_Palavra",txt,i, j));
+                    txt= "";
+                }
+             
+            /*   
                 if(quebraLinhas.get(i)[j].contentEquals("\"")){                    
                     Frases = true;
                     
@@ -66,7 +91,7 @@ public class Comparacao {
                    txt = " ";
                                 
                     }
-                          
+                */          
           
         if (quebraLinhas.get(i)[j].matches("Largada")){
             TolkensPalavras.add(new TolkensGramatica ( "TK_Largada",quebraLinhas.get(i)[j],i, j)); 
@@ -302,7 +327,7 @@ public class Comparacao {
                 filaTolkens.add("TK_Declemento");
             }
         }else if (quebraLinhas.get(i)[j].matches("[a-zA-Z][a-zA-Z0-9]*") && !quebraLinhas.get(i)[j].contains("Largada|Chegada|AutoEntrada|AutoSaida|Sempre|Quando|Exceto| Int")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Variavel: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_Var: ", quebraLinhas.get(i)[j],i,j));
             if (filaTolkens.size()==0){
                 filaTolkens.add("$");
                 filaTolkens.add("TK_Var");
