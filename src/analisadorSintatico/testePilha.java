@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package analisadorSintatico;
-import java.util.Stack;
+import java.util.PriorityQueue;
+import java.util.Queue;
 /**
  *
  * @author luand
@@ -15,17 +16,15 @@ public class testePilha {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       
+        Queue<String> filaTolkens = new PriorityQueue<String>();
         
-        Stack pilha = new Stack();
-        pilha.push("luan");
-        pilha.push(3);
+        filaTolkens.add("luan");
+        filaTolkens.add("Dutra");
+        filaTolkens.add("da");
+        filaTolkens.add("Silva");
         
-        
-        System.out.println(" pilha " + pilha );
-        System.out.println(" pilha " + pilha.pop() );
-        System.out.println("  teste " + pilha );
-        
+        System.out.println("\n"+ filaTolkens);
     }
     
 }

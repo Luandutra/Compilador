@@ -4,7 +4,10 @@ package expressao_Regular;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import tolkens.TolkensGramatica;
+
 
 
 public class Comparacao {
@@ -19,8 +22,11 @@ public class Comparacao {
          ArrayList<String[]> quebraLinhas = new ArrayList<>();
          ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
          ArrayList<TolkensGramatica> Erros = new ArrayList<>();
+         Queue<String> filaTolkens = new LinkedList<String>();
+         
         
-      
+                 
+                 
         int cont = 0;
         for (int i = 0; i < arquivo.size()-1;i++){
             try{
@@ -63,65 +69,255 @@ public class Comparacao {
                           
           
         if (quebraLinhas.get(i)[j].matches("Largada")){
-            TolkensPalavras.add(new TolkensGramatica ( "TK_Largada",quebraLinhas.get(i)[j],i, j));   
+            TolkensPalavras.add(new TolkensGramatica ( "TK_Largada",quebraLinhas.get(i)[j],i, j)); 
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Largada");
+            }else{
+                filaTolkens.add("TK_Largada");
+            }
         }else if (quebraLinhas.get(i)[j].matches("Chegada")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Chegada: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Chegada");
+            }else{
+                filaTolkens.add("TK_Chegada");
+            }
+             
         }else if (quebraLinhas.get(i)[j].matches("AutoSaida")){
             TolkensPalavras.add(new TolkensGramatica ("TK_AutoSaida: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_AutoSaida");
+            }else{
+                filaTolkens.add("TK_AutoSaida");
+            }
         }else if (quebraLinhas.get(i)[j].matches("AutoEntrada")){
             TolkensPalavras.add(new TolkensGramatica ("TK_AutoEntrada: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_AutoEntrada");
+            }else{
+                filaTolkens.add("TK_AutoEntrada");
+            }
         }else if (quebraLinhas.get(i)[j].matches("Int")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Inteiro: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_Int: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Int");
+            }else{
+                filaTolkens.add("TK_Int");
+            }
         }else if (quebraLinhas.get(i)[j].matches("Quando")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Quando: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Quando");
+            }else{
+                filaTolkens.add("TK_Quando");
+            }
         }else if (quebraLinhas.get(i)[j].matches("Exceto")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Exceto: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Exceto");
+            }else{
+                filaTolkens.add("TK_Exceto");
+            }
         }else if (quebraLinhas.get(i)[j].matches("Sempre")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Sempre: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Sempre");
+            }else{
+                filaTolkens.add("TK_Sempre");
+            }
         }else if (quebraLinhas.get(i)[j].matches("FimSempre")){
             TolkensPalavras.add(new TolkensGramatica ("TK_FimSempre: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_FimSempre");
+            }else{
+                filaTolkens.add("TK_FimSempre");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\.")){
             TolkensPalavras.add(new TolkensGramatica ("TK_FimLinha: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_FimLinha");
+            }else{
+                filaTolkens.add("TK_FimLinha");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\(")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_AbrePar: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_AbreParentese: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_AbreParentese");
+            }else{
+                filaTolkens.add("TK_AbreParentese");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\)")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_FechaPar: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_FechaParentese: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_FechaParentese");
+            }else{
+                filaTolkens.add("TK_FechaParentese");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\[")){
             TolkensPalavras.add(new TolkensGramatica ("TK_AbreCochete: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_AbreCochete");
+            }else{
+                filaTolkens.add("TK_AbreCochete");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\]")){
             TolkensPalavras.add(new TolkensGramatica ("TK_FechaCochete: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_FechaCochete");
+            }else{
+                filaTolkens.add("TK_FechaCochete");
+            }
         }else if (quebraLinhas.get(i)[j].matches("[0-9]*")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Numeros: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_Int: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Int");
+            }else{
+                filaTolkens.add("TK_Int");
+            }
+        }else if (quebraLinhas.get(i)[j].matches("-[0-9]+")){
+            TolkensPalavras.add(new TolkensGramatica ("TK_IntNegativo: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_IntNegativo");
+            }else{
+                filaTolkens.add("TK_IntNegativo");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\:=")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Atribuicao: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_Atribuir: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Atribuir");
+            }else{
+                filaTolkens.add("TK_Atribuir");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\+")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Soma: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_Adicao: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Adicao");
+            }else{
+                filaTolkens.add("TK_Adicao");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\-")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Subtracao: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Subtracao");
+            }else{
+                filaTolkens.add("TK_Subtracao");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\*")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Multiplicacao: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Multiplicacao");
+            }else{
+                filaTolkens.add("TK_Multiplicacao");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\/")){
             TolkensPalavras.add(new TolkensGramatica ("Tk_Divisao: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Divisao");
+            }else{
+                filaTolkens.add("TK_Divisao");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\>")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Maior: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Maior");
+            }else{
+                filaTolkens.add("TK_Maior");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\<")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Menor: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Menor");
+            }else{
+                filaTolkens.add("TK_Menor");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\=")){
             TolkensPalavras.add(new TolkensGramatica ("Tk_Igual: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Igual");
+            }else{
+                filaTolkens.add("TK_Igual");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\<=")){
             TolkensPalavras.add(new TolkensGramatica ("TK_MaiorIgual", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_MaiorIgual");
+            }else{
+                filaTolkens.add("TK_MaiorIgual");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\>=")){
             TolkensPalavras.add(new TolkensGramatica ("TK_MenorIgual: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_MenorIgual");
+            }else{
+                filaTolkens.add("TK_MenorIgual");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\<>")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Diferente: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Diferente");
+            }else{
+                filaTolkens.add("TK_Diferente");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\++")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Inclemento: ", quebraLinhas.get(i)[j],i,j));    
+            TolkensPalavras.add(new TolkensGramatica ("TK_Inclemento: ", quebraLinhas.get(i)[j],i,j));
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Inclemento");
+            }else{
+                filaTolkens.add("TK_Inclemento");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\\-\\-")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Declemento: ", quebraLinhas.get(i)[j],i,j));  
+             if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Declemento");
+            }else{
+                filaTolkens.add("TK_Declemento");
+            }
         }else if (quebraLinhas.get(i)[j].matches("[a-zA-Z][a-zA-Z0-9]*") && !quebraLinhas.get(i)[j].contains("Largada|Chegada|AutoEntrada|AutoSaida|Sempre|Quando|Exceto| Int")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Variavel: ", quebraLinhas.get(i)[j],i,j));    
+            TolkensPalavras.add(new TolkensGramatica ("TK_Variavel: ", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_Var");
+            }else{
+                filaTolkens.add("TK_Var");
+            }
         }else if (quebraLinhas.get(i)[j].matches("\"([\\s+]|[a-zA-Z0-9])*\"")){
-            TolkensPalavras.add(new TolkensGramatica ("Tolkens: frase ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("Tolkens: String", quebraLinhas.get(i)[j],i,j));
+            if (filaTolkens.size()==0){
+                filaTolkens.add("$");
+                filaTolkens.add("TK_String");
+            }else{
+                filaTolkens.add("TK_String");
+            }
+            
         }else{ 
             Erros.add(new TolkensGramatica("Erro Lexico: ", quebraLinhas.get(i)[j],i,j));
         }
@@ -137,19 +333,13 @@ public class Comparacao {
         
        
         if( argu== true ){
-                for(TolkensGramatica l : TolkensPalavras){
+
+            for(TolkensGramatica l : TolkensPalavras){
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
                         
                 }
-                /*
-                try{
-                 arq = new FileWriter(getFile(saida));
-                 gravarArquivoTolkens = new PrintWriter(arq);
-                 
-                 arq.close()
-                }catch(Exception e ){
-                    System.out.println("Erro de gravação de tolkens "+ e );
-                }*/
+            
+        System.out.println("fila "+ filaTolkens);        
        }
        
     }
