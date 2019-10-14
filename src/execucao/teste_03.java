@@ -1,10 +1,11 @@
-
 package execucao;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 
@@ -16,7 +17,6 @@ public class teste_03 {
      public static boolean argu = false ;
      public static String endereco;
      
-     
     public URL getFile(){
         return getClass().getResource(arquivoAbrir);
     } 
@@ -25,7 +25,8 @@ public class teste_03 {
     public static void main(String[] args) {
         
     ArrayList<String> arg  = new ArrayList<>();
-    
+    String endArqSint = "C:\\Users\\luand\\OneDrive\\Documents\\compilador\\AnalisadorSintatico\\sintatico.txt";
+
     
        if (args.length > 0){
         
@@ -66,14 +67,17 @@ public class teste_03 {
           
     try{
        System.out.println("\n Endereco do Arquivo \n" + endereco);
-
-        ArrayList<String> arquivo = new ArrayList<>();
        
+        ArrayList<String> arquivo = new ArrayList<>();
+        ArrayList<String> arquivoSint = new ArrayList<>();
+        Queue<String> filTolkens = new LinkedList<String>();
+        
+        filTolkens = expressao_Regular.Comparacao.procedimento(arquivo, argu, filaTolkens);
         arquivo= leitura.Leitura_Arquivo.leitura(endereco);
-           
+        arquivoSint = leitura.Leitura_Arquivo.contSint(endArqSint);   
         System.out.println(" \n Apresentacao de Tolkens, Lexema, Linha e Coluna \n " );
         expressao_Regular.Comparacao.procedimento(arquivo, argu);
-      
+        analiseSintatica.Sintatico.processoSintatico(arquivoSint, filTolkens);
            
     }catch (IOException e){
         System.out.println(" Erro " + e);
@@ -84,5 +88,4 @@ public class teste_03 {
 
     
     
-}   
-
+}  
