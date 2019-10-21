@@ -1,6 +1,7 @@
 package execucao;
 
 
+import expressao_Regular.FilaDeTolkens;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.net.URL;
@@ -72,13 +73,14 @@ public class teste_03 {
         ArrayList<String> arquivoSint = new ArrayList<>();
         Queue<String> filTolkens = new LinkedList<String>();
         
-        filTolkens = expressao_Regular.Comparacao.procedimento(arquivo, argu, filaTolkens);
+        //filTolkens = expressao_Regular.Comparacao.procedimento(arquivo, argu, filaTolkens);
         arquivo= leitura.Leitura_Arquivo.leitura(endereco);
         arquivoSint = leitura.Leitura_Arquivo.contSint(endArqSint);   
         System.out.println(" \n Apresentacao de Tolkens, Lexema, Linha e Coluna \n " );
-        expressao_Regular.Comparacao.procedimento(arquivo, argu);
+        expressao_Regular.Comparacao.procedimento(arquivo, argu, arquivoSint);
         analiseSintatica.Sintatico.processoSintatico(arquivoSint, filTolkens);
-           
+        //expressao_Regular.FilaDeTolkens.sint(arquivo,argu, arquivoSint);
+      
     }catch (IOException e){
         System.out.println(" Erro " + e);
 

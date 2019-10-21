@@ -1,3 +1,14 @@
 Largada
 Int n .
+Int c .
+Int f .
+AutoEntrada ( "Entrada" ) .
+AutoEntrada ( n ) .
+f:= 1 .
+c := 1 .
+Sempre ( c <= n ) [
+f := f * c .
+c := c + 1 .
+] FimSempre
+AutoEntrada ( n ) .
 Chegada

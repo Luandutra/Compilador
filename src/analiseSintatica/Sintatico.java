@@ -4,18 +4,25 @@ package analiseSintatica;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Stack;
-
+import expressao_Regular.FilaDeTolkens;
 
 
 public class Sintatico {
     
-    public static void  processoSintatico(ArrayList<String> arqSint,   Queue<String> filaTolkens ){
+    public static void  processoSintatico(ArrayList<String> arqSint,   Queue<String> fila ){
         
+        FilaDeTolkens teste = new FilaDeTolkens();
         ArrayList<String[]> quebraLinhas = new ArrayList<>();
-        Stack pilha = new Stack();
+        
+        Stack <String> pilha = new Stack <String>();
         
         pilha.push("$");
         pilha.push("<CODIGO>");
+        
+        
+        if(pilha.peek()== "<CODIGO>"){
+            
+        }
         
         for (int i = 0; i < arqSint.size()-1;i++){
             try{
@@ -26,11 +33,11 @@ public class Sintatico {
             }
         }
         
-        System.out.println("teste pilha"+pilha);
+       // System.out.println("teste pilha"+pilha);
         for (int  i = 0; i < quebraLinhas.size(); i++){
             for(int j = 0; j < quebraLinhas.get(i).length; j++){
             
-                System.out.println(quebraLinhas.get(i)[j]);
+                //System.out.println(quebraLinhas.get(i)[j]);
             }
             
         } 

@@ -19,7 +19,7 @@ public class Comparacao {
     public static PrintWriter gravarArquivoTolkens;
     public static boolean arg;
     
-    public static void procedimento( ArrayList<String>arquivo, boolean argu){
+    public static void procedimento( ArrayList<String>arquivo, boolean argu, ArrayList<String> arqSint){
         
         ArrayList<String[]> quebraLinhas = new ArrayList<>();
         ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
@@ -98,7 +98,7 @@ public class Comparacao {
             TolkensPalavras.add(new TolkensGramatica ( "TK_Largada",quebraLinhas.get(i)[j],i, j)); 
            
             filaTolkens.add("TK_Largada");
-            filaNaoTerminal.add("CODIGO");
+          
         }else if (quebraLinhas.get(i)[j].matches("Chegada")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Chegada: ", quebraLinhas.get(i)[j],i,j));
             
@@ -116,9 +116,9 @@ public class Comparacao {
                 filaTolkens.add("TK_AutoEntrada");
             
         }else if (quebraLinhas.get(i)[j].matches("Int")){
-            TolkensPalavras.add(new TolkensGramatica ("TK_Int: ", quebraLinhas.get(i)[j],i,j));
+            TolkensPalavras.add(new TolkensGramatica ("TK_INTEIRO: ", quebraLinhas.get(i)[j],i,j));
             
-                filaTolkens.add("TK_Int");
+                filaTolkens.add("TK_INTEIRO");
           
         }else if (quebraLinhas.get(i)[j].matches("Quando")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Quando: ", quebraLinhas.get(i)[j],i,j));
@@ -271,8 +271,10 @@ public class Comparacao {
                         filaTolkens.add(l.getTkNome());              
         }
         */
-        
         filaTolkens.add("$");
+        expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens);
+        
+        
         if( argu== true ){
 
             for(TolkensGramatica l : TolkensPalavras){
@@ -280,7 +282,9 @@ public class Comparacao {
                         
                 }
             
-        System.out.println("fila "+ filaTolkens);        
+        //System.out.println("fila "+ filaTolkens);   
+            System.out.println("------------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------------------------");
        }
        
     }
