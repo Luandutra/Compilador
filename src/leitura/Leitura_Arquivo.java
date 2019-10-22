@@ -47,7 +47,6 @@ public class Leitura_Arquivo {
         ArrayList<String> arqSint = new ArrayList<>();
         
     try {
-        System.out.println("ojcnsijdbbsdcsjkcbskjbcdsbckdjb"); 
         FileReader localSint = new FileReader(endArqSint);
         BufferedReader leituraSint = new BufferedReader(localSint);
         String linha ="";

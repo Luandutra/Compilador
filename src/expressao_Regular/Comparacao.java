@@ -19,7 +19,7 @@ public class Comparacao {
     public static PrintWriter gravarArquivoTolkens;
     public static boolean arg;
     
-    public static void procedimento( ArrayList<String>arquivo, boolean argu, ArrayList<String> arqSint){
+    public static void procedimento( ArrayList<String>arquivo, boolean argu, ArrayList<String> arqSint,ArrayList<String> arg ){
         
         ArrayList<String[]> quebraLinhas = new ArrayList<>();
         ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
@@ -266,27 +266,24 @@ public class Comparacao {
                          }
                 }
         }
-        /*
-        for(TolkensGramatica l : TolkensPalavras){
-                        filaTolkens.add(l.getTkNome());              
-        }
-        */
+        
         filaTolkens.add("$");
-        expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens);
         
-        
-        if( argu== true ){
+        if( argu == true && arg.contains("-lt") ){
 
             for(TolkensGramatica l : TolkensPalavras){
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
-                        
                 }
-            
-        //System.out.println("fila "+ filaTolkens);   
-            System.out.println("------------------------------------------------------------------------------");
-            System.out.println("------------------------------------------------------------------------------");
-       }
+           
+        }else {
+            System.out.println("Analise Léxica Contruida com sucesso!!\n");
+        }
        
+        if(argu == true && arg.contains("-ls")){
+             expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens, arg);
+        }else {
+            System.out.println("Analise Sintatica construida com sucesso");
+        }
     }
     
 

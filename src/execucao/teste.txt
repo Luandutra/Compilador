@@ -2,10 +2,9 @@ Largada
 Int n .
 Int c .
 Int f .
-AutoEntrada ( "Entrada" ) .
-AutoEntrada ( n ) .
-f:= 1 .
+f := 1 .
 c := 1 .
+n := 4 .
 Sempre ( c <= n ) [
 f := f * c .
 c := c + 1 .

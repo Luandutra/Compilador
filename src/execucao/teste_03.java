@@ -1,7 +1,7 @@
 package execucao;
 
 
-import expressao_Regular.FilaDeTolkens;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.net.URL;
@@ -35,10 +35,8 @@ public class teste_03 {
             arg.add(args[i]);
             
         }
-       
-     
-            
-        if (arg.contains("-lt")) {
+           
+        if (arg.contains("-lt")| arg.contains("-ls")| arg.contains("-tudo")) {
                 argu = true ;       
         }   else {
                 argu = false;
@@ -51,35 +49,22 @@ public class teste_03 {
        
     arquivoAbrir = arg.get(0);
     
-    teste_03 f = new teste_03();
-    endereco = f.getFile().toString();
     
-    char[] localArquivo = endereco.toCharArray();
-    endereco = "";
-    for (int i = 5; i < localArquivo.length;i++){
-        if (localArquivo[i] == '\\'){
-            endereco += "/";
-        }else {
-            endereco += localArquivo[i];
-        }
-    }
-        
-   
           
     try{
-       System.out.println("\n Endereco do Arquivo \n" + endereco);
+      
        
         ArrayList<String> arquivo = new ArrayList<>();
         ArrayList<String> arquivoSint = new ArrayList<>();
         Queue<String> filTolkens = new LinkedList<String>();
         
-        //filTolkens = expressao_Regular.Comparacao.procedimento(arquivo, argu, filaTolkens);
-        arquivo= leitura.Leitura_Arquivo.leitura(endereco);
+        
+        arquivo= leitura.Leitura_Arquivo.leitura(arquivoAbrir);
         arquivoSint = leitura.Leitura_Arquivo.contSint(endArqSint);   
-        System.out.println(" \n Apresentacao de Tolkens, Lexema, Linha e Coluna \n " );
-        expressao_Regular.Comparacao.procedimento(arquivo, argu, arquivoSint);
+   
+        expressao_Regular.Comparacao.procedimento(arquivo, argu, arquivoSint, arg);
         analiseSintatica.Sintatico.processoSintatico(arquivoSint, filTolkens);
-        //expressao_Regular.FilaDeTolkens.sint(arquivo,argu, arquivoSint);
+        
       
     }catch (IOException e){
         System.out.println(" Erro " + e);
