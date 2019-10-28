@@ -25,8 +25,7 @@ public class ComparacaoAnaliseLexica {
         ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
         ArrayList<TolkensGramatica> Erros = new ArrayList<>();
         Queue<String> filaTolkens = new LinkedList<String>();
-        Queue<String> filaNaoTerminal = new LinkedList<String>();
-        
+        ArrayList<String> listaVariaveis = new ArrayList<>();
         
                  
                  
@@ -172,12 +171,9 @@ public class ComparacaoAnaliseLexica {
             
         }else if (quebraLinhas.get(i)[j].matches("-[0-9]+")){
             TolkensPalavras.add(new TolkensGramatica ("TK_IntNegativo: ", quebraLinhas.get(i)[j],i,j));
-             if (filaTolkens.size()==0){
-                filaTolkens.add("$");
+            
                 filaTolkens.add("TK_IntNegativo");
-            }else{
-                filaTolkens.add("TK_IntNegativo");
-            }
+            
         }else if (quebraLinhas.get(i)[j].matches("\\:=")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Atribuir: ", quebraLinhas.get(i)[j],i,j));
              
@@ -247,7 +243,7 @@ public class ComparacaoAnaliseLexica {
             TolkensPalavras.add(new TolkensGramatica ("TK_Var: ", quebraLinhas.get(i)[j],i,j));
             
                 filaTolkens.add("TK_Var");
-            
+                listaVariaveis.add("TK_Var");
         }else if (quebraLinhas.get(i)[j].matches("\"([\\s+]|[a-zA-Z0-9])*\"")){
             TolkensPalavras.add(new TolkensGramatica ("Tolkens: String", quebraLinhas.get(i)[j],i,j));
            
@@ -294,6 +290,7 @@ public class ComparacaoAnaliseLexica {
             expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }
         
+            expressao_Regular.AnaliseSemantica.semantico(TolkensPalavras, listaVariaveis);
     }
     
 
