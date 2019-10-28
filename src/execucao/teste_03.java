@@ -36,7 +36,7 @@ public class teste_03 {
             
         }
            
-        if (arg.contains("-lt")| arg.contains("-ls")| arg.contains("-tudo")) {
+        if (arg.contains("-lt")| arg.contains("-ls")| arg.contains("-tudo") | arg.contains("-lv")) {
                 argu = true ;       
         }   else {
                 argu = false;

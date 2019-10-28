@@ -118,7 +118,7 @@ public class ComparacaoAnaliseLexica {
             TolkensPalavras.add(new TolkensGramatica ("TK_INTEIRO: ", quebraLinhas.get(i)[j],i,j));
             
                 filaTolkens.add("TK_INTEIRO");
-          
+                listaVariaveis.add("TK_INTEIRO");
         }else if (quebraLinhas.get(i)[j].matches("Quando")){
             TolkensPalavras.add(new TolkensGramatica ("TK_Quando: ", quebraLinhas.get(i)[j],i,j));
             
@@ -243,7 +243,7 @@ public class ComparacaoAnaliseLexica {
             TolkensPalavras.add(new TolkensGramatica ("TK_Var: ", quebraLinhas.get(i)[j],i,j));
             
                 filaTolkens.add("TK_Var");
-                listaVariaveis.add("TK_Var");
+                listaVariaveis.add(quebraLinhas.get(i)[j]);
         }else if (quebraLinhas.get(i)[j].matches("\"([\\s+]|[a-zA-Z0-9])*\"")){
             TolkensPalavras.add(new TolkensGramatica ("Tolkens: String", quebraLinhas.get(i)[j],i,j));
            
@@ -290,7 +290,11 @@ public class ComparacaoAnaliseLexica {
             expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }
         
+        if(argu == true && arg.contains("-lv")){
             expressao_Regular.AnaliseSemantica.semantico(TolkensPalavras, listaVariaveis);
+            
+        }
+            
     }
     
 
