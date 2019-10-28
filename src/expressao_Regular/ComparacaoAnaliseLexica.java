@@ -12,7 +12,7 @@ import tolkens.TolkensGramatica;
 
 
 
-public class Comparacao {
+public class ComparacaoAnaliseLexica {
     
     public static String saida = "tokens.txt";
     public static FileWriter arq;
@@ -280,7 +280,7 @@ public class Comparacao {
         }
        
         if(argu == true && arg.contains("-ls")){
-             expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens, arg);
+             expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }else {
             System.out.println("Analise Sintatica construida com sucesso");
         }
@@ -291,7 +291,7 @@ public class Comparacao {
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
                 }
             
-            expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens, arg);
+            expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }
         
     }

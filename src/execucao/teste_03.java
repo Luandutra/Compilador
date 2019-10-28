@@ -62,7 +62,7 @@ public class teste_03 {
         arquivo= leitura.Leitura_Arquivo.leitura(arquivoAbrir);
         arquivoSint = leitura.Leitura_Arquivo.contSint(endArqSint);   
    
-        expressao_Regular.Comparacao.procedimento(arquivo, argu, arquivoSint, arg);
+        expressao_Regular.ComparacaoAnaliseLexica.procedimento(arquivo, argu, arquivoSint, arg);
         analiseSintatica.Sintatico.processoSintatico(arquivoSint, filTolkens);
         
       

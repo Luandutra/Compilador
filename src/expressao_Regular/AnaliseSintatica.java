@@ -12,7 +12,7 @@ import tolkens.TolkensSintatico;
 
 
 
-public class FilaDeTolkens {
+public class AnaliseSintatica {
     
 
     
@@ -132,6 +132,7 @@ public class FilaDeTolkens {
                                 
                                if (aux== -1){
                                         System.out.println("ERRO SINTATICO");
+                                        System.out.println(quebraLinhas.get(i)[j]);
                                }
                             }
                             

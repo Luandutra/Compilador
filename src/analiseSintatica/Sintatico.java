@@ -4,14 +4,14 @@ package analiseSintatica;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Stack;
-import expressao_Regular.FilaDeTolkens;
+import expressao_Regular.AnaliseSintatica;
 
 
 public class Sintatico {
     
     public static void  processoSintatico(ArrayList<String> arqSint,   Queue<String> fila ){
         
-        FilaDeTolkens teste = new FilaDeTolkens();
+        AnaliseSintatica teste = new AnaliseSintatica();
         ArrayList<String[]> quebraLinhas = new ArrayList<>();
         
         Stack <String> pilha = new Stack <String>();
