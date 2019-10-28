@@ -20,7 +20,6 @@ public class FilaDeTolkens {
         
         ArrayList<String[]> quebraLinhas = new ArrayList<>();
         ArrayList<TolkensGramatica> TolkensPalavras = new ArrayList<>();
-        ArrayList<TolkensGramatica> Erros = new ArrayList<>();
         ArrayList<TolkensSintatico> exe = new ArrayList<>();
         Stack<String> pilha = new Stack<String>();
         
@@ -130,11 +129,12 @@ public class FilaDeTolkens {
                             if(filaTolkens.peek() == vet[j]){
                                 aux = Integer.parseInt(quebLinhas.get(i)[j]);
                                 c = true;
-                               
+                                
+                               if (aux== -1){
+                                        System.out.println("ERRO SINTATICO");
+                               }
                             }
-                            if (aux == -1){
-                                System.out.println("ERRO SINTATICO");
-                            }
+                            
                         
                     } 
                 }else if (pilha.peek() == filaTolkens.peek()) {
@@ -1097,7 +1097,7 @@ public class FilaDeTolkens {
                     }
                
                System.out.println("----------------------------------------");
-               if(argu == true && arg.contains("-ls")){
+               if(argu == true && arg.contains("-ls") || arg.contains("-tudo")){
                     for(TolkensSintatico l : exe){
                                      System.out.println( l.getTkSintatico()+" -- "+l.getTkPasso());
                     }

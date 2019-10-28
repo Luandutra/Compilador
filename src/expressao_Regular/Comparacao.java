@@ -284,6 +284,16 @@ public class Comparacao {
         }else {
             System.out.println("Analise Sintatica construida com sucesso");
         }
+        
+        if(argu == true && arg.contains("-tudo")){
+            
+            for(TolkensGramatica l : TolkensPalavras){
+                        System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
+                }
+            
+            expressao_Regular.FilaDeTolkens.sint(arquivo, argu, arqSint,filaTolkens, arg);
+        }
+        
     }
     
 
