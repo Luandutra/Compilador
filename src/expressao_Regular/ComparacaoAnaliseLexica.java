@@ -26,7 +26,9 @@ public class ComparacaoAnaliseLexica {
         ArrayList<TolkensGramatica> Erros = new ArrayList<>();
         Queue<String> filaTolkens = new LinkedList<String>();
         ArrayList<String> listaVariaveis = new ArrayList<>();
-        
+        ArrayList<String> listaDivisor = new ArrayList<>();
+        ArrayList<String> listaTolkensIdVar = new ArrayList<>();
+        ArrayList<String> listaLexema = new ArrayList<>();
                  
                  
         int cont = 0;
@@ -262,9 +264,23 @@ public class ComparacaoAnaliseLexica {
                          }
                 }
         }
-        
+        //Adiciona no ultimo valor da lista o sifrom
         filaTolkens.add("$");
         
+        //Lista que adiciona os lexema para identificação do divisor
+        for(TolkensGramatica e : TolkensPalavras){
+                listaTolkensIdVar.add(e.getTkNome());
+                listaLexema.add(e.getTkLexema());
+                             
+        }
+        
+        //Lista que adiciona os tolkens para identificação do tolken tk_var
+        for(TolkensGramatica e : TolkensPalavras){
+                listaDivisor.add(e.getTkLexema());
+                             
+        }
+         
+        //Apresenta as listagens de tolkens
         if( argu == true && arg.contains("-lt") ){
 
             for(TolkensGramatica l : TolkensPalavras){
@@ -274,13 +290,14 @@ public class ComparacaoAnaliseLexica {
         }else {
             System.out.println("Analise Léxica Contruida com sucesso!!\n");
         }
-       
+        //Apresenta os loops de analise sintatica
         if(argu == true && arg.contains("-ls")){
              expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }else {
-            System.out.println("Analise Sintatica construida com sucesso");
+            System.out.println("Analise Sintatica construida com sucesso\n");
         }
         
+        //Apresenta todas as opções posiveis exirgida pelo compilador 
         if(argu == true && arg.contains("-tudo")){
             
             for(TolkensGramatica l : TolkensPalavras){
@@ -289,9 +306,9 @@ public class ComparacaoAnaliseLexica {
             
             expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }
-        
-        if(argu == true && arg.contains("-lv")){
-            expressao_Regular.AnaliseSemantica.semantico(TolkensPalavras, listaVariaveis);
+        // lista as variaveis 
+        if(argu == true && arg.contains("-lv")| arg.contains("-tudo")){
+            expressao_Regular.AnaliseSemantica.semantico(listaVariaveis, listaDivisor, listaTolkensIdVar, listaLexema);
             
         }
             
