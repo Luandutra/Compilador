@@ -270,7 +270,7 @@ public class ComparacaoAnaliseLexica {
         //Lista que adiciona os lexema para identificação do divisor
         for(TolkensGramatica e : TolkensPalavras){
                 listaTolkensIdVar.add(e.getTkNome());
-                listaLexema.add(e.getTkLexema());
+            
                              
         }
         
@@ -308,7 +308,7 @@ public class ComparacaoAnaliseLexica {
         }
         // lista as variaveis 
         if(argu == true && arg.contains("-lv")| arg.contains("-tudo")){
-            expressao_Regular.AnaliseSemantica.semantico(listaVariaveis, listaDivisor, listaTolkensIdVar, listaLexema);
+            expressao_Regular.AnaliseSemantica.semantico(listaVariaveis, listaDivisor, listaTolkensIdVar);
             
         }
             

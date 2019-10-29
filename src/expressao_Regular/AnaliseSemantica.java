@@ -7,7 +7,7 @@ import tolkens.TolkensGramatica;
 
 public class AnaliseSemantica {
     
-    public static void semantico(ArrayList<String> listaVariaveis, ArrayList<String> listaDivisor, ArrayList<String>  listaTolkensIdVar, ArrayList<String> listaLexema){
+    public static void semantico(ArrayList<String> listaVariaveis, ArrayList<String> listaDivisor, ArrayList<String>  listaTolkensIdVar){
         ArrayList<String> novaListVar = new ArrayList<>();
         ArrayList<String> novaListVar2 = new ArrayList<>();
       
@@ -25,7 +25,7 @@ public class AnaliseSemantica {
             for (int i = 0; i< novaListVar.size(); i++){
                 
                if (novaListVar2.contains(novaListVar.get(i))){
-                        System.out.println(" ERRO  A  variavel: "+ novaListVar.get(i)+ " ja foi declarada ");
+                        System.out.println(" ERRO  A  variavel: "+ novaListVar.get(i)+ " foi declarada mais de uma vez ");
                         return;
                     }else{
                         novaListVar2.add(novaListVar.get(i)); 
@@ -45,12 +45,18 @@ public class AnaliseSemantica {
                     System.out.println(" Erro divisivel por zero ");
                     return;
                 }else if(listaTolkensIdVar.size()>0){
+                    
                         for(int l = 0; l < listaTolkensIdVar.size();l++){
-                              //  System.out.println("aquele teste basico");
+                             
                                 if(listaTolkensIdVar.get(l).contains("TK_Var") && listaTolkensIdVar.get(l+1).contains("TK_Atribuir")){
-                                    if(listaLexema.get(l+2).equals("0")){
-                                        System.out.println(" Erro divisivel por zero "); 
-                                        return;
+                                    
+                                    if(listaDivisor.get(l+2).equals("0")){
+                                                                            
+                                        if(listaDivisor.get(l).equals(listaDivisor.get(i+1))){
+                                            System.out.println(" Erro divisivel por zero "); 
+                                            return;
+                                            
+                                        }
                                     }
                                 }
                         }
