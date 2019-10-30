@@ -262,6 +262,7 @@ public class ComparacaoAnaliseLexica {
                         for(TolkensGramatica e : Erros){
                                 System.out.println("Erro Lexico: " + e.getTkNome()+" -- "+"Lexema: "+ e.getTkLexema()+ " -- "+ "Linha: "+ e.getPosicaoLinha()+" -- "+"coluna: "+e.getPosicaoColuna());
                          }
+                        System.out.println("--------------------------------------------------------------------------------------");
                 }
         }
         //Adiciona no ultimo valor da lista o sifrom
@@ -270,31 +271,26 @@ public class ComparacaoAnaliseLexica {
         //Lista que adiciona os lexema para identificação do divisor
         for(TolkensGramatica e : TolkensPalavras){
                 listaTolkensIdVar.add(e.getTkNome());
-            
-                             
+                listaDivisor.add(e.getTkLexema());           
         }
         
-        //Lista que adiciona os tolkens para identificação do tolken tk_var
-        for(TolkensGramatica e : TolkensPalavras){
-                listaDivisor.add(e.getTkLexema());
-                             
-        }
-         
         //Apresenta as listagens de tolkens
         if( argu == true && arg.contains("-lt") ){
 
             for(TolkensGramatica l : TolkensPalavras){
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
                 }
+            System.out.println("-------------------------------------------------------------------------------------------");
            
         }else {
-            System.out.println("Analise Léxica Contruida com sucesso!!\n");
+            System.out.println("Analise Léxica Contruida com sucesso!!! \n");
         }
         //Apresenta os loops de analise sintatica
         if(argu == true && arg.contains("-ls")){
              expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
+             System.out.println("------------------------------------------------------------------------------------------");
         }else {
-            System.out.println("Analise Sintatica construida com sucesso\n");
+            System.out.println("Analise Sintatica construida com sucesso!!! \n");
         }
         
         //Apresenta todas as opções posiveis exirgida pelo compilador 
@@ -303,13 +299,14 @@ public class ComparacaoAnaliseLexica {
             for(TolkensGramatica l : TolkensPalavras){
                         System.out.println("tolkens: " + l.getTkNome()+" -- "+"Lexema: "+ l.getTkLexema()+ " -- "+ "Linha: "+ l.getPosicaoLinha()+" -- "+"coluna: "+l.getPosicaoColuna());
                 }
-            
             expressao_Regular.AnaliseSintatica.sint(arquivo, argu, arqSint,filaTolkens, arg);
         }
+        
         // lista as variaveis 
-        if(argu == true && arg.contains("-lv")| arg.contains("-tudo")){
-            expressao_Regular.AnaliseSemantica.semantico(listaVariaveis, listaDivisor, listaTolkensIdVar);
-            
+        if(argu == true && arg.contains("-lse")| arg.contains("-tudo")){
+            expressao_Regular.AnaliseSemantica.semantico(listaVariaveis, listaDivisor, listaTolkensIdVar, arg, argu);  
+        }else{
+            System.out.println("Analise Semantica Construida com sucesso!!! \n");
         }
             
     }

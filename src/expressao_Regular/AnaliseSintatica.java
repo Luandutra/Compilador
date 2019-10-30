@@ -1100,8 +1100,9 @@ public class AnaliseSintatica {
                System.out.println("----------------------------------------");
                if(argu == true && arg.contains("-ls") || arg.contains("-tudo")){
                     for(TolkensSintatico l : exe){
-                                     System.out.println( l.getTkSintatico()+" -- "+l.getTkPasso());
+                                     System.out.println(l.getTkSintatico()+" -- "+l.getTkPasso());
                     }
+                 
                }
           
     } 
